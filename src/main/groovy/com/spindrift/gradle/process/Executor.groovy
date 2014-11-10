@@ -15,6 +15,8 @@
  */
 package com.spindrift.gradle.process
 
+import com.spindrift.gradle.config.ScriptConfiguration;
+
 interface Executor {
   ExecutionResult execute(ScriptConfiguration script) throws IOException
 }

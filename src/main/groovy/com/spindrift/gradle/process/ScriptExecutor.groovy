@@ -16,6 +16,9 @@
 package com.spindrift.gradle.process
 
 import java.io.IOException
+
+import com.spindrift.gradle.config.ScriptConfiguration;
+
 import static org.gradle.api.logging.Logging.getLogger
 
 class ScriptExecutor implements Executor {

@@ -17,9 +17,9 @@ package com.spindrift.gradle.atg
 
 import org.gradle.util.ConfigureUtil
 
-import com.spindrift.gradle.process.ConfigurationsContainer
-import com.spindrift.gradle.process.Options
-import com.spindrift.gradle.process.ScriptConfiguration
+import com.spindrift.gradle.config.ConfigurationsContainer;
+import com.spindrift.gradle.config.Options;
+import com.spindrift.gradle.config.ScriptConfiguration;
 
 class StartSQLImportExtension {
   

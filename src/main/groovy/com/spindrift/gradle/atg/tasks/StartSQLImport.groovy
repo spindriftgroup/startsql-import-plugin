@@ -15,10 +15,11 @@
  */
 package com.spindrift.gradle.atg.tasks
 
+import com.spindrift.gradle.config.ScriptConfiguration;
 import com.spindrift.gradle.process.ExecutionResult
 import com.spindrift.gradle.process.Executor
-import com.spindrift.gradle.process.ScriptConfiguration
 import com.spindrift.gradle.process.ScriptExecutor
+
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.Input

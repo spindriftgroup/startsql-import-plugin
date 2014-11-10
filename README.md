@@ -27,9 +27,8 @@ To run this plugin a few environment requirements must be met. The build's integ
 
 3. A JDBC driver must be on the classpath when the startSQLImport script starts up. This can be achieved in different ways, e.g.
 	 - Add the driver classes to $ATG_HOME/home/locallib
-	 - Create a new module with a manifest that refers to the class in the gradle cache or some other location, e.g.
-
-		$ATG_HOME/MyModule/META-INF/MANIFEST.MF
+	 - Create a new module with a manifest that refers to the class in the gradle cache or some other location, e.g. $ATG_HOME/MyModule/META-INF/MANIFEST.MF
+		
 		ATG-Class-Path: /path/to/ojdbc6-11.2.0.3.0.jar
 
 4. An existing database installation must already exist with a fully created BCC/CA schema, e.g. created by CIM or some other database management execution.

@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.spindrift.gradle.process
+package com.spindrift.gradle.config
 
 import groovy.lang.Closure
+
 import org.gradle.util.ConfigureUtil
 
 class ConfigurationsContainer {
