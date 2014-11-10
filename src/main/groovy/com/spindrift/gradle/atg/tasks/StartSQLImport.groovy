@@ -56,7 +56,7 @@ public class StartSQLImport extends DefaultTask {
       double timeInSeconds = (after - before) / 1000D 
       
       if (result.isSuccessful()) {
-        project.logger.lifecycle "Imported ${script.file} in ${timeInSeconds} ms"
+        project.logger.lifecycle "Imported ${script.file} in ${timeInSeconds} secs"
         if (result.hasOutput()) {
           project.logger.info result.output
         }
