@@ -61,43 +61,67 @@ Extension Properties
 --------------------
 
 <table>
-  <tr>
-    <th>Property</th><th>Desciption</th>
-    <td>imports</td><td>Container of script configurations</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Property</th><th>Desciption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>imports</td><td>Container of script configurations</td>
+    </tr>
+  </tbody>
 </table>
 
-The ~imports~ is a collection(list) of script configurations.
+The *imports* is a collection(list) of script configurations.
 
 <table>
-  <tr>
-    <th>Property</th><th>Desciption</th>
-    <td>parameters</td><td>A single script configuration set of parameters</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Property</th><th>Desciption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>parameters</td><td>A single script configuration set of parameters</td>
+    </tr>
+  </tbody>
 </table>
 
-Each script configuration ( ~parameters~ ) includes the basic required parameters plus optional extras.
+Each script configuration *parameters* includes the basic required parameters plus optional extras.
 
 <table>
-  <tr>
-    <th>Property</th><th>Desciption</th>
-    <td>file</td><td>The XML file to import</td>
-    <td>workspace</td><td>The workspace name, mutually exclusive with project</td>
-    <td>project</td><td>The project name, mutually exclusive with workspace</td>
-    <td>options</td><td>The extra optional parameters</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Property</th><th>Desciption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>file</td><td>The XML file to import</td>
+      <td>workspace</td><td>The workspace name, mutually exclusive with project</td>
+      <td>project</td><td>The project name, mutually exclusive with workspace</td>
+      <td>options</td><td>The extra optional parameters</td>
+    </tr>
+  </tbody>
 </table>
 
-The ~options~ contain basic required options and any additional optional parameters
+The *options* contain basic required options and any additional optional parameters
 
 <table>
-  <tr>
-    <th>Property</th><th>Desciption</th>
-    <td>modules</td><td>The list of modules (default is Publishing)</td>
-    <td>server</td><td>The ATG server to include in the script run</td>
-    <td>repository</td><td>The repository to import into</td>
-    <td>options</td><td>The extra optional parameters</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Property</th><th>Desciption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>modules</td><td>The list of modules (default is Publishing)</td>
+      <td>server</td><td>The ATG server to include in the script run</td>
+      <td>repository</td><td>The repository to import into</td>
+      <td>options</td><td>The extra optional parameters</td>
+    </tr>
+  </tbody>
 </table>
 
 Example Configuration
