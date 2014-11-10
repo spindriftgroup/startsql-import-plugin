@@ -1,0 +1,57 @@
+import org.gradle.internal.jvm.Jvm;
+import org.gradle.util.GradleVersion;
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+dependencies {
+  compile(
+    gradleApi(),
+    localGroovy()
+  )
+  testCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
+    exclude group: 'org.codehaus.groovy'
+  }
+}
+
+//Set the default build and version properties
+project.group='com.spindrift.atg'
+project.ext {
+  timestamp = new Date()
+  buildUser=System.getProperty('user.name')
+  buildNumber="(development build by $buildUser)"
+}
+if (!hasProperty('release') || (hasProperty('release') && release!='true')) {
+  project.version+='-SNAPSHOT'
+}
+project.logger.quiet "Plugin ${project.name} version: ${project.version}"
+project.logger.quiet "BuildNumber: ${buildNumber}"
+project.logger.quiet("Gradle Version: " +GradleVersion.current().getVersion())
+project.logger.quiet("Java Version: " +Jvm.current())
+
+//Set java compatibilities
+targetCompatibility = sourceCompatibility = "1.6"
+
+//Apply additional functionality
+apply from: 'gradle/maven.gradle'
+
+//Set the default task when none supplied:
+defaultTasks 'install'
+
+//For integration testing
+task integrationTest(type: GradleBuild) {
+  description="Runs startSQLImport integration test"
+  group="Verification"
+  dir = 'integration-test'
+  tasks = ['tasks','startSQLImport']
+}
+
+// Add the wrapper task to enable auto-install of the configured version via ./gradlew
+task wrapper(type: Wrapper) {
+  gradleVersion = "2.0"
+}
+

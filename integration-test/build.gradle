@@ -1,0 +1,56 @@
+buildscript {
+  repositories {
+    mavenLocal()
+  }
+  dependencies {
+    classpath 'com.spindrift.atg:start-sql-import:0.1-SNAPSHOT'
+  }
+}
+
+apply plugin: 'start-sql-import'
+
+//Example: startSQLImport -file integration-test/import.xml -workspace default -m Publishing DCS.Versioned JDBCDriver -s gradleImport -repository /atg/multisite/SiteRepository
+
+startSQLImport {
+  imports {
+    parameters {
+      file = 'integration-test/importSite.xml'
+      workspace = 'default-site'+System.currentTimeMillis()
+      options {
+        modules = ['DCS.Versioned','JDBCDriver']
+        server = 'gradleImport'
+        repository = '/atg/multisite/SiteRepository'
+      }
+    }
+    parameters {
+      file = 'integration-test/importCatalog.xml'
+      workspace = 'default-catalog'+System.currentTimeMillis()+"2"
+      options {
+        modules = ['DCS.Versioned','JDBCDriver']
+        server = 'gradleImport'
+        repository = '/atg/commerce/catalog/ProductCatalog'
+      }
+    }
+    //Test no workspace or project
+//    parameters {
+//      file = 'integration-test/importSite.xml'
+//      options {
+//        modules = ['DCS.Versioned','JDBCDriver']
+//        server = 'gradleImport'
+//        repository = '/atg/multisite/SiteRepository'
+//      }
+//    }
+    //Test both workspace and project
+//    parameters {
+//      file = 'integration-test/importCatalog.xml'
+//      workspace = 'update-catalog'+System.currentTimeMillis()+"2"
+//      project = 'my-project'
+//      options {
+//        modules = ['DCS.Versioned','JDBCDriver']
+//        server = 'gradleImport'
+//        repository = '/atg/commerce/catalog/ProductCatalog'
+//      }
+//    }
+  }
+}
+
