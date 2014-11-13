@@ -45,7 +45,7 @@ To use the plugin, include it in your build script:
         jcenter()
       }
       dependencies {
-        classpath 'com.spindrift.atg:start-sql-import:0.1'
+        classpath 'com.spindrift.atg:start-sql-import:0.2.0'
       }
     }
     apply plugin: 'start-sql-import'
