@@ -45,7 +45,7 @@ To use the plugin, include it in your build script:
         jcenter()
       }
       dependencies {
-        classpath 'com.spindrift.atg:start-sql-import:0.1-SNAPSHOT'
+        classpath 'com.spindrift.atg:start-sql-import:0.1'
       }
     }
     apply plugin: 'start-sql-import'
@@ -148,6 +148,12 @@ The following example imports data from 2 local files into the Site and ProductC
       }
     }
 
+Execution
+=========
+
+    gradle startSQLImport
+    
+    
 
 
 
