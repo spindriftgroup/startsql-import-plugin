@@ -161,12 +161,12 @@ Execution
     
 Build Notes
 ===========
-The default task is set to a local maven install so that the plugin is available for testing in local builds 
+The default task is set to a local maven install so that the plugin is available for testing in local builds  
 ``gradle | ./gradlew | gradle install``
 
 To execute the integration test you must have all the environment dependencies set up. I have other external tasks 
 which generate the JDBCDriver module and the gradleImport server.
-From the root of this project execute the remote gradle build inside the integration-test folder: 
+From the root of this project execute the remote gradle build inside the integration-test folder:  
 ``gradle integrationTask``
 
 Example integration test output
