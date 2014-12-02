@@ -5,7 +5,8 @@ Provides gradle plugin wrapper functionality for Oracle Web Commerce's (ATG) sta
 Note
 ====
 The first time startSQLImport is executed it prompts for usage acceptance requiring a yes/no answer.
-This must be dealt with before running the startSQLImport the first time otherwise the task will hang.
+If you don't accept the license via a manual execution the first time the task will hang.
+This is now dealt with (since 0.2.0) by running the markLicenseAsRead task as a dependency of startSQLImport.
 
 Environmental Requirements
 ==========================
@@ -55,6 +56,11 @@ Custom Task Types
 -----------------
 
 StartSQLImport - Executes the startSQLImport script for each configuration
+
+Additional Tasks
+----------------
+markLicenseAsRead - This will create the licence.read file to enable automatic acceptance of the license. 
+Note: Its your own responsibility to read and accept the license, but this is necessary in an automated setup.
 
 Extension Properties
 --------------------
@@ -152,6 +158,26 @@ Execution
 =========
 
     gradle startSQLImport
+    
+Build Notes
+===========
+The default task is set to a local maven install so that the plugin is available for testing in local builds 
+``gradle | ./gradlew | gradle install``
+
+To execute the integration test you must have all the environment dependencies set up. I have other external tasks 
+which generate the JDBCDriver module and the gradleImport server.
+From the root of this project execute the remote gradle build inside the integration-test folder: 
+``gradle integrationTask``
+
+Example integration test output
+-------------------------------
+
+    :integration-test:markLicenseAsRead
+    :integration-test:startSQLImport
+    Executing: [startSQLImport, -file, integration-test/importSite.xml, -workspace, default-site1417493451580, -m, DCS.Versioned, JDBCDriver, -s, gradleImport, -repository, /atg/multisite/SiteRepository]
+    Imported integration-test/importSite.xml in 30.594 secs
+    Executing: [startSQLImport, -file, integration-test/importCatalog.xml, -workspace, default-catalog14174934515922, -m, DCS.Versioned, JDBCDriver, -s, gradleImport, -repository, /atg/commerce/catalog/ProductCatalog]
+    Imported integration-test/importCatalog.xml in 26.38 secs
     
     
 

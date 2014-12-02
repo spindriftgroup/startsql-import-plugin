@@ -34,11 +34,13 @@ class StartSQLImportPlugin implements Plugin<Project> {
   
   static final String PLUGIN_EXTENSION_NAME="startSQLImport"
   static final String START_SQL_IMPORT_TASK="startSQLImport"
+  static final String MARK_LICENSE_AS_READ_TASK="markLicenseAsRead"
 
   @Override
   public void apply(Project project) {
     project.extensions."${PLUGIN_EXTENSION_NAME}" = new StartSQLImportExtension()
     addStartSQLImportTask(project)
+    addMarkLicenseAsReadTask(project)
   }
   
 
@@ -46,4 +48,28 @@ class StartSQLImportPlugin implements Plugin<Project> {
     project.task(START_SQL_IMPORT_TASK, type: StartSQLImport )
   }
 
+  /**
+   * startSQLImport requires a license read response on first execution.
+   * Piping a yes to the startSQLImport task causes an endless loop, so we simply
+   * create the file with a 'y' as would be done by the check itself.
+   * @param project
+   */
+  private void addMarkLicenseAsReadTask(Project project) {
+    Task task = project.getTasks().create(MARK_LICENSE_AS_READ_TASK)
+    task.description="Set the startSQLImport license check as read"
+    task.group="Data Management"
+    task.doLast {
+      def atgHome=System.env['ATG_HOME']
+      assert atgHome, "Expected ATG_HOME environment variable is invalid."
+      File atgHomeDir = new File(atgHome)
+      assert atgHomeDir.exists(), "[$atgHome] directory does not exist. Ensure ATG_HOME points to a valid ATG installation"
+      File dynHomeDir = new File(atgHome,"home")
+      assert dynHomeDir.exists()
+      File licenseReadFile = new File(dynHomeDir,'license.read')
+      licenseReadFile.withWriter { w->
+        w << 'y'
+      }
+    }
+    project.tasks."${START_SQL_IMPORT_TASK}".dependsOn "${MARK_LICENSE_AS_READ_TASK}"
+  }
 }
